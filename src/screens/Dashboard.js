@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import { Link } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { withStyles } from "@material-ui/styles";
@@ -10,7 +11,7 @@ const styles = {
   root: {
     width: "100%"
   },
-  menuitem: {
+  menulist: {
     backgroundColor: "#ddd"
   }
 };
@@ -24,10 +25,14 @@ class Dashboard extends React.Component {
           <div>AAA</div>
         </Grid>
         {/* <Paper square> */}
-        <MenuList className={classes.menuitem}>
+        <MenuList className={classes.menulist}>
           <Grid container direction="row">
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>My account</MenuItem>
+            <Link
+              to="/shift"
+              style={{ textDecoration: "none", display: "block" }}
+            >
+              <MenuItem>My account</MenuItem>
+            </Link>
             <MenuItem>Logout</MenuItem>
           </Grid>
         </MenuList>
