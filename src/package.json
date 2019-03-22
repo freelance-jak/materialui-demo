@@ -1,0 +1,19 @@
+{
+  "title": "Material demo",
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "description": "https://github.com/mui-org/material-ui/blob/master/docs/src/pages/demos/tabs/FullWidthTabs.js",
+  "dependencies": {
+    "@material-ui/core": "3.9.2",
+    "@material-ui/icons": "3.0.2",
+    "@material-ui/styles": "3.0.0-alpha.10",
+    "moment": "2.24.0",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-day-picker": "7.3.0",
+    "react-dom": "latest",
+    "react-router-dom": "5.0.0",
+    "react-swipeable-views": "latest"
+  }
+}
