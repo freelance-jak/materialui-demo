@@ -181,6 +181,80 @@ class Calender2 extends React.Component {
   }
 }
 
+class Calender3 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.renderDay = this.renderDay.bind(this);
+    this.state = {
+      selectedDays: [],
+      workdays: {}
+    };
+  }
+  handleDayClick(day, { selected }) {
+    const { selectedDays, workdays } = this.state;
+    const selectedDate = day.getDate();
+
+    if (selected) {
+      const selectedIndex = selectedDays.findIndex(selectedDay =>
+        DateUtils.isSameDay(selectedDay, day)
+      );
+      selectedDays.splice(selectedIndex, 1);
+      delete workdays[selectedDate];
+    } else {
+      selectedDays.push(day);
+      Object.assign(workdays, { [selectedDate]: ["休"] });
+    }
+    this.setState({ selectedDays });
+    this.setState({ workdays });
+  }
+
+  renderDay(day) {
+    const { workdays } = this.state;
+    const date = day.getDate();
+    const dateStyle = {
+      // position: "relative",
+      // color: "gray",
+      // bottom: 0,
+      // right: 0,
+      fontSize: "0.8em"
+    };
+    const workdayStyle = { fontSize: "0.7em", textAlign: "center" };
+    const cellStyle = {
+      height: 30,
+      width: 20,
+      position: "relative"
+    };
+    return (
+      <div style={cellStyle}>
+        <div style={dateStyle}>{date}</div>
+        {workdays[date] &&
+          workdays[date].map((name, i) => (
+            <div key={i} style={workdayStyle}>
+              {name}
+            </div>
+          ))}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <DayPicker
+          localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
+          locale={"ja"}
+          canChangeMonth={false}
+          className="calender3"
+          renderDay={this.renderDay}
+          selectedDays={this.state.selectedDays}
+          onDayClick={this.handleDayClick}
+        />
+      </div>
+    );
+  }
+}
+
 class FullWidthTabs extends React.Component {
   state = {
     value: 0,
@@ -284,6 +358,7 @@ class FullWidthTabs extends React.Component {
         <br />
         <Calender />
         <Calender2 />
+        <Calender3 />
       </div>
     );
   }
